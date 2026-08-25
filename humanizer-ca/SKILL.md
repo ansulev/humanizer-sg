@@ -1,12 +1,9 @@
 ---
 name: humanizer-ca
 description: |
-  Reescriu text en català que sona a IA perquè es llegeixi com si l'hagués escrit una
-  persona, sense canviar què diu. Fes-lo servir per editar o revisar prosa en català amb
-  crosses d'IA, llenguatge de venda, fonts vagues, estructura repetitiva, castellanismes,
-  puntuació o pronoms febles mal posats, farciment o restes de xatbot. També quan et diguin
-  "humanitza això", "fes-ho més humà" o "humanitza el text de dalt". Capa catalana sobre
-  el mètode de `humanizer`.
+  Catalan layer over `humanizer`. Reescriu prosa en català que sona a IA sense canviar què
+  diu: crosses d'IA, castellanismes, pronoms febles, punt volat (l·l), apòstrofs, accents,
+  registre i varietat. Inclou mode copy per a màrqueting.
 license: MIT
 metadata:
   version: "0.1"

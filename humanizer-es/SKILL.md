@@ -1,11 +1,9 @@
 ---
 name: humanizer-es
 description: |
-  Reescribe texto en español que suena a IA para que lea como lo escribiría una
-  persona, sin cambiar lo que dice. Úsalo al editar o revisar prosa en español con
-  muletillas de IA, lenguaje de venta, fuentes vagas, estructura repetitiva, palabras
-  de relleno o restos de chatbot. También cuando te digan "humaniza esto", "hazlo más
-  humano" o "humaniza el texto de arriba". Capa en español sobre el método de `humanizer`.
+  Spanish layer over `humanizer`. Reescribe prosa en español que suena a IA sin cambiar
+  lo que dice: muletillas de IA, lenguaje de venta, gerundios, ¿ ¡, tildes y ñ, registro
+  tú/usted. Incluye modo copy para marketing.
 license: MIT
 metadata:
   version: "0.1"
