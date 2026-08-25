@@ -39,8 +39,11 @@ messages even when they are the preceding block.
 
 Given a file path, use file mode.
 
-For Spanish or Catalan text, use `humanizer-es` or `humanizer-ca` instead. They apply this
-same method plus the AI slop lexicon and orthography rules of that language.
+**Language.** Check what language the text is in, not what language the request was in.
+If it is Spanish or Catalan, read `humanizer-es` or `humanizer-ca` and apply that layer on
+top of this method. Do not tell the user to invoke another skill, and do not translate the
+text. Say which layer you used in the summary. Any other language: apply the structural
+patterns here, and skip the English-specific word lists in §7.
 
 ## Match the writer's voice
 
