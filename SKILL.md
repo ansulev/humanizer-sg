@@ -27,6 +27,21 @@ When given text to humanize:
 
 The input type controls what you return. See [How to return the result](#how-to-return-the-result). Use the same rewrite process in every mode.
 
+## How to find the text
+
+Works as `/humanizer` and in plain language: "humanize this", "make this sound human",
+"take the AI tone out of it".
+
+**If the user says "the text above" / "below" / "this" without pasting anything:** use the
+text block immediately before (or after) in the conversation. If more than one block could
+be meant, ask in one line before rewriting. Never rewrite code, terminal output, or system
+messages even when they are the preceding block.
+
+Given a file path, use file mode.
+
+For Spanish or Catalan text, use `humanizer-es` or `humanizer-ca` instead. They apply this
+same method plus the AI slop lexicon and orthography rules of that language.
+
 ## Match the writer's voice
 
 If the user provides a writing sample (their own previous writing), analyze it before rewriting:
@@ -389,6 +404,20 @@ Remove only the unsupported defense. If it contains a real claim, state that cla
 > Session tokens are rotated every 24 hours, in place, and clients refresh transparently.
 
 One rejected option may be valid. Several short, unrelated rejections are a stronger sign. Ask what new information each sentence adds. If it only records an earlier edit, rewrite the paragraph around its main point.
+
+## Marketing copy
+
+Pattern §4 removes sales language. That goes too far in advertising copy, where persuasion
+is the job of the text. In copy mode:
+
+- **Keep** real persuasion: a concrete benefit, proof, a number, the offer, a clear call to
+  action.
+- **Remove** empty AI persuasion: superlatives with no fact behind them (*stunning*,
+  *unique*, *revolutionary*), promises with no subject, generic enthusiasm, upbeat send-offs.
+- A marketing claim still needs a fact behind it. If you do not have one, ask. Do not invent
+  it — rule 3 has no copy exception.
+
+Say so in the summary: "copy mode — persuasion kept, filler removed".
 
 ## Check for false positives
 

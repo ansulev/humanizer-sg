@@ -4,7 +4,8 @@ description: |
   Reescribe texto en español que suena a IA para que lea como lo escribiría una
   persona, sin cambiar lo que dice. Úsalo al editar o revisar prosa en español con
   muletillas de IA, lenguaje de venta, fuentes vagas, estructura repetitiva, palabras
-  de relleno o restos de chatbot. Capa en español sobre el método de `humanizer`.
+  de relleno o restos de chatbot. También cuando te digan "humaniza esto", "hazlo más
+  humano" o "humaniza el texto de arriba". Capa en español sobre el método de `humanizer`.
 license: MIT
 metadata:
   version: "0.1"
@@ -19,6 +20,18 @@ tildes, ñ y signos de apertura `¿` `¡` correctos.
 Este skill es una **capa en español** sobre `humanizer` (SoT del método y de las reglas
 estructurales). No dupliques aquí los 35 patrones: aplica los estructurales de `humanizer`
 tal cual y añade lo específico del español de abajo.
+
+## Cómo invocarlo
+
+Funciona con `/humanizer-es` y también en lenguaje natural: "humaniza esto",
+"hazlo más humano", "quítale el tono de IA".
+
+**Si te dicen "el texto de arriba" / "de abajo" / "esto"** sin pegar nada: toma el bloque de
+texto inmediatamente anterior (o posterior) de la conversación. Si hay más de un candidato o
+no está claro cuál es, pregúntalo en una línea antes de reescribir. No reescribas código,
+salida de terminal ni mensajes del sistema aunque sean el bloque anterior.
+
+Si te dan una ruta de fichero, trabaja en modo fichero (más abajo).
 
 ## Qué hacer
 
@@ -71,6 +84,20 @@ lado, por otra parte, además (apilados), el futuro es prometedor, sigue crecien
 - **Tildes y ñ.** Nunca los sustituyas por ASCII (nao→não no; "ano"≠"año"). Revísalos al final.
 - **Mayúsculas en títulos (§17).** El español no usa mayúscula inicial en cada palabra:
   "Estrategias de negociación", no "Estrategias De Negociación".
+
+## Copy y marketing (SEONOVE)
+
+`humanizer` §4 quita el lenguaje de venta. En copy publicitario eso se pasa: persuadir **es**
+el trabajo del texto. Regla para este caso:
+
+- **Conserva** la persuasión real: beneficio concreto, prueba, cifra, oferta, llamada a la
+  acción clara.
+- **Quita** la persuasión vacía de IA: superlativos sin dato (*impresionante*, *único*,
+  *revolucionario*), promesas sin sujeto, entusiasmo genérico, cierres de aire optimista.
+- Un claim de marketing necesita un hecho detrás. Si no lo tienes, pídelo; no te lo inventes
+  (regla 2, sin excepciones para copy).
+
+Si el texto es copy, dilo en el resumen: "modo copy — persuasión conservada, relleno quitado".
 
 ## Falsos positivos
 
