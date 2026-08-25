@@ -50,7 +50,7 @@ Editing the repo copy alone changes nothing at runtime.
 ## Updating from upstream
 
 ```bash
-cd /mnt/data/10_PROJECTS/humanizer
+cd /mnt/data/10_PROJECTS/_forks/humanizer
 git fetch upstream                        # nothing local changes yet
 git log --oneline HEAD..upstream/main     # what's new
 git merge upstream/main                   # replay their work under ours
