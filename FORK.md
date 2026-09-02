@@ -10,7 +10,7 @@ as possible — see [Divergence](#divergence).
 |---|---|
 | `humanizer-es/SKILL.md` | Spanish layer — AI slop lexicon, `¿ ¡`, tildes/ñ, tú/usted register |
 | `humanizer-ca/SKILL.md` | Catalan layer — castellanismes, pronoms febles, punt volat (l·l), apostrophes, accents, variety kept |
-| `SKILL.md` (4 hunks) | Input resolution, language auto-routing, copy mode |
+| `SKILL.md` (4 additions, 2 diff hunks) | Input resolution, language auto-routing, clean-text handoff, copy mode |
 
 The two language skills are **not** translations of the 35 patterns. The structural patterns
 (dashes, curly quotes, bold, emojis, false ranges, chatbot artifacts, filler) are
@@ -29,6 +29,10 @@ instead of ~30 KB, and stops them drifting from upstream on every release.
    mode keeps concrete benefit, proof, offer and CTA, and drops superlatives with no fact
    behind them. The no-invented-facts rule keeps **no** copy exception: a claim without a fact
    gets asked about, never fabricated.
+4. **clean-text handoff** — this skill changes wording, not bytes. Invisible Unicode, exotic
+   spaces, bidi and tag characters belong to the sibling `clean-text` skill (our slim
+   derivation of `blader/watermarks-remover`), so the method never reimplements that pass.
+   Upstream has no equivalent split.
 
 ## Where the live copies run
 
@@ -36,16 +40,28 @@ The repo is the publishable source. The skills agents actually load live in the 
 harness SoT:
 
 ```
-~/.agents/skills/humanizer/SKILL.md
-~/.agents/skills/humanizer-es/SKILL.md
-~/.agents/skills/humanizer-ca/SKILL.md
+~/.agents/cc-skills/seonove/skills/humanizer/SKILL.md
+~/.agents/cc-skills/seonove/skills/humanizer-es/SKILL.md
+~/.agents/cc-skills/seonove/skills/humanizer-ca/SKILL.md
 ```
 
-Reached by claude, grok, antigravity and opencode through that shared dir. Codex reads its
-own `skills/`; if `codex debug prompt-input | grep humanizer` comes up empty, symlink it.
+These are **JIT pack** skills, not always-on: the harness holds BASE ≤ 12 always-on skills and
+loads the rest per domain via `/pack seonove`. They are reached by claude, grok, antigravity
+and opencode through the shared `~/.agents` dir. Codex reads its own `skills/`; if
+`codex debug prompt-input | grep humanizer` comes up empty, symlink it.
 
-**These are twin copies.** Edit `~/.agents` (live), then copy into this repo when publishing.
-Editing the repo copy alone changes nothing at runtime.
+**These are twin copies**, and the sync is scripted in both directions:
+
+```bash
+~/.agents/scripts/check-forks.sh --all              # is this fork behind upstream?
+git merge upstream/main                             # take their work (see below)
+~/.agents/scripts/sync-skills-from-forks.sh --check # what would land in the harness
+~/.agents/scripts/sync-skills-from-forks.sh --apply # copy repo -> live harness
+```
+
+The sync runs **repo → harness**. So land a change here first and push it out, rather than
+editing `~/.agents` and back-copying — an edit that lives only in the harness is invisible to
+this repo and gets overwritten on the next `--apply`.
 
 ## Updating from upstream
 
@@ -64,19 +80,24 @@ Merge, not rebase — this history is already pushed.
 next time the same one appears. Our hunks hit the same neighbourhoods every release, so each
 is resolved roughly once, ever.
 
-After merging, copy any changed skill back into `~/.agents/skills/` or the live harnesses keep
-running the old prompt.
+After merging, run `~/.agents/scripts/sync-skills-from-forks.sh --apply` or the live harnesses
+keep running the old prompt. `scripts/check-upstream.sh` classifies an upstream release into
+files you never touched (safe to take) and files you customized (merge by hand).
 
 ## Divergence
 
 Measured against upstream `e2e92e7`:
 
 ```
-SKILL.md               32 lines, 4 hunks   <- the only conflict surface
-humanizer-ca/SKILL.md 168 lines            <- upstream has no such file
-humanizer-es/SKILL.md 136 lines            <- upstream has no such file
-336 insertions, 0 deletions
+SKILL.md               36 lines, 2 hunks   <- the only conflict surface
+humanizer-ca/SKILL.md 165 lines            <- upstream has no such file
+humanizer-es/SKILL.md 134 lines            <- upstream has no such file
+335 insertions, 0 deletions
 ```
+
+Re-measure with `git diff --numstat upstream/main -- SKILL.md humanizer-es/SKILL.md
+humanizer-ca/SKILL.md`. The two hunks sit at `SKILL.md:27` (how to find the text, invisible
+characters, language routing) and `SKILL.md:390` (copy mode).
 
 No deletions, so we never fight upstream over removed text. A whole-file rewrite on their
 side (as in `2.11.0`) will still conflict; ordinary releases usually will not.

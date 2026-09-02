@@ -39,6 +39,10 @@ messages even when they are the preceding block.
 
 Given a file path, use file mode.
 
+**Invisible characters.** This skill changes wording, not bytes. Invisible Unicode, exotic
+spaces, bidi controls and tag characters are `clean-text`'s job — run it first if the text was
+pasted from a model or is headed for a build, diff or import. Do not reimplement that pass here.
+
 **Language.** Check what language the text is in, not what language the request was in.
 If it is Spanish or Catalan, read `humanizer-es` or `humanizer-ca` and apply that layer on
 top of this method. Do not tell the user to invoke another skill, and do not translate the
