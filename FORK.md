@@ -40,14 +40,22 @@ The repo is the publishable source. The skills agents actually load live in the 
 harness SoT:
 
 ```
-~/.agents/cc-skills/seonove/skills/humanizer/SKILL.md
-~/.agents/cc-skills/seonove/skills/humanizer-es/SKILL.md
-~/.agents/cc-skills/seonove/skills/humanizer-ca/SKILL.md
+~/.agents/skills/humanizer/SKILL.md
+~/.agents/skills/humanizer-es/SKILL.md
+~/.agents/skills/humanizer-ca/SKILL.md
 ```
 
-These are **JIT pack** skills, not always-on: the harness holds BASE ≤ 12 always-on skills and
-loads the rest per domain via `/pack seonove`. They are reached by claude, grok, antigravity
-and opencode through the shared `~/.agents` dir. Codex reads its own `skills/`; if
+These are **always-on** skills `[promoted 2026-09-11]`, moved out of the seonove pack: Angel
+writes in three languages every day, so clean+humanize is not a per-domain concern. A skill in
+`skills/` costs only its name and description in context — the body loads on invocation — so the
+promotion is cheap despite this file's size.
+
+Promotion is a **move**, never a symlink from `skills/` into `cc-skills/`: `pack-unload.sh`
+removes any `skills/` link resolving under `cc-skills/`, so a symlinked promotion would be
+silently undone the first time anyone unloaded the seonove pack.
+
+They are reached by claude, grok, antigravity and opencode through the shared `~/.agents` dir.
+Codex reads its own `skills/`; if
 `codex debug prompt-input | grep humanizer` comes up empty, symlink it.
 
 **These are twin copies**, and the sync is scripted in both directions:
