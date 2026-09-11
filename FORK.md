@@ -12,7 +12,7 @@ as possible — see [Divergence](#divergence).
 | `humanizer-ca/SKILL.md` | Catalan layer — castellanismes, pronoms febles, punt volat (l·l), apostrophes, accents, variety kept |
 | `SKILL.md` (4 additions, 2 diff hunks) | Input resolution, language auto-routing, clean-text handoff, copy mode |
 
-The two language skills are **not** translations of the 35 patterns. The structural patterns
+The two language skills are **not** translations of the 25 patterns. The structural patterns
 (dashes, curly quotes, bold, emojis, false ranges, chatbot artifacts, filler) are
 language-neutral and stay in the root skill. Each layer owns only what is specific to its
 language: the slop lexicon and the orthography models get wrong. That keeps them ~4 KB each
@@ -86,7 +86,7 @@ files you never touched (safe to take) and files you customized (merge by hand).
 
 ## Divergence
 
-Measured against upstream `e2e92e7`:
+Measured against upstream `9862685` `[re-measured 2026-09-11]`:
 
 ```
 SKILL.md               36 lines, 2 hunks   <- the only conflict surface
@@ -96,14 +96,25 @@ humanizer-es/SKILL.md 134 lines            <- upstream has no such file
 ```
 
 Re-measure with `git diff --numstat upstream/main -- SKILL.md humanizer-es/SKILL.md
-humanizer-ca/SKILL.md`. The two hunks sit at `SKILL.md:27` (how to find the text, invisible
-characters, language routing) and `SKILL.md:390` (copy mode).
+humanizer-ca/SKILL.md`. The two hunks sit at `SKILL.md:40` (how to find the text, invisible
+characters, language routing — now a `###` under *How to work*) and `SKILL.md:382` (copy mode,
+before *When not to act*).
 
 No deletions, so we never fight upstream over removed text. A whole-file rewrite on their
-side (as in `2.11.0`) will still conflict; ordinary releases usually will not.
+side will still conflict; ordinary releases usually will not.
+
+**The rewrite this file predicted happened — `34ca949`, 2026-09-11.** Upstream rebuilt the
+skill around 25 patterns ordered by strength (it was 35 in a flat list), renamed *Check for
+false positives* to *When not to act*, and made *Voice* / *What to return* subsections of
+*How to work*. The re-apply was still 36 insertions and 0 deletions, but **the cross-references
+inside our hunks had to be renumbered** — sales language moved §4 → **§16**, the English word
+lists §7 → **§12**, and the no-invented-facts rule became step 2 of *How to work*. That is the
+part a mechanical re-apply gets wrong and nothing warns you about: the text merges cleanly and
+then points at the wrong sections. **Re-check every `§n` in our hunks after any upstream
+renumbering.**
 
 **Do not add fork documentation to `README.md`.** It is upstream's highest-churn file — their
-latest commit `e2e92e7` is a README rewrite, and `2.11.0` rewrote all repo guidance. Anything
+`e2e92e7` was a README rewrite and `2.11.0` rewrote all repo guidance. Anything
 put there conflicts on the next release for no operational gain. This file exists so that does
 not have to happen.
 
