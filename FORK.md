@@ -1,8 +1,14 @@
-# FORK.md — ansulev/humanizer
+# FORK.md — ansulev/humanizer-sg
 
 Fork of [blader/humanizer](https://github.com/blader/humanizer). This file is ours; upstream
 has no `FORK.md`, so it never conflicts. `README.md` and `SKILL.md` stay as close to upstream
 as possible — see [Divergence](#divergence).
+
+**Renamed 2026-09-15** — repo and working dir are `humanizer-sg` (`-sg` is the house package
+suffix, as in `trawl-sg`, `prospector-sg`, `unmark-sg`). The three **skill surfaces** stay
+`humanizer`, `humanizer-es`, `humanizer-ca`: `unmark-sg` sets the precedent by shipping a skill
+named `clean-text`. The package name is ours to choose; a surface name is how every harness
+invokes the skill, so renaming it breaks callers for no gain.
 
 ## What this fork adds
 
@@ -30,9 +36,13 @@ instead of ~30 KB, and stops them drifting from upstream on every release.
    behind them. The no-invented-facts rule keeps **no** copy exception: a claim without a fact
    gets asked about, never fabricated.
 4. **clean-text handoff** — this skill changes wording, not bytes. Invisible Unicode, exotic
-   spaces, bidi and tag characters belong to the sibling `clean-text` skill (our slim
-   derivation of `blader/watermarks-remover`), so the method never reimplements that pass.
-   Upstream has no equivalent split.
+   spaces, bidi and tag characters belong to the sibling `clean-text` skill, so the method
+   never reimplements that pass. Upstream has no equivalent split.
+
+   `clean-text` is **not** part of this fork. Its SoT is `~/Projects/unmark-sg`, a separate
+   project, and its upstream is `guillaumemeyer/watermarks-remover` — mirrored read-only at
+   `~/Projects/_forks/watermarks-remover` and tracked by `unmark-sg/scripts/check-upstream.sh`.
+   (`blader/watermarks-remover` does not exist; an earlier revision of this file named it.)
 
 ## Where the live copies run
 
@@ -74,7 +84,7 @@ this repo and gets overwritten on the next `--apply`.
 ## Updating from upstream
 
 ```bash
-cd /mnt/data/10_PROJECTS/_forks/humanizer
+cd ~/Projects/_forks/humanizer-sg         # = /mnt/data/10_PROJECTS/_forks/humanizer-sg
 git fetch upstream                        # nothing local changes yet
 git log --oneline HEAD..upstream/main     # what's new
 git merge upstream/main                   # replay their work under ours
