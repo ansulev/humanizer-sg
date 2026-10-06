@@ -49,7 +49,7 @@ Si l'usuari dona una mostra de la seva escriptura, imita-la i prioritza els seus
 
 ## Paraules i frases d'IA en català
 
-Mateixes categories que §7 de `humanizer`, amb el lèxic real del català. Surten molt més en
+Mateixes categories que §12 de `humanizer`, amb el lèxic real del català. Surten molt més en
 text d'IA, sobretot en grup. No les prohibeixis una per una: treu-les quan inflen una idea
 corrent.
 
@@ -59,16 +59,16 @@ món cada cop més, marca un abans i un després, punt d'inflexió, s'erigeix co
 com, juga un paper fonamental/clau/cabdal, de vital importància, al cor de, ric patrimoni,
 un seguit de, un ampli ventall de, una àmplia gamma de.
 
-**Verbs que esquiven *ser*/*tenir* (§8):** compta amb, disposa de, ofereix, es caracteritza
+**Verbs que esquiven *ser*/*tenir* (§18):** compta amb, disposa de, ofereix, es caracteritza
 per, destaca per, acull → fes servir *és*, *té*, *hi ha*.
 
-**Venda (§4):** impressionant, fascinant, enlluernador, situat/enclavat a, submergeix-te en,
+**Venda (§16):** impressionant, fascinant, enlluernador, situat/enclavat a, submergeix-te en,
 descobreix, no t'ho pots perdre, experiència única, joia amagada.
 
 **Tancaments i transicions de farciment:** en resum, en conclusió, en definitiva, d'altra
 banda, per altra banda, a més (apilats), el futur és prometedor, continua creixent.
 
-**Farciment (§23) → curt:** amb la finalitat de → per a; pel fet que → perquè; en el moment
+**Farciment → curt:** amb la finalitat de → per a; pel fet que → perquè; en el moment
 actual → ara; té la capacitat de → pot; a dia d'avui → avui.
 
 ## Específic del català (el valor real d'aquest skill)
@@ -111,7 +111,7 @@ Recorda la reforma de 2016: molts diacrítics van desaparèixer i només en qued
 (*sóc/soc* no, però sí *mà*, *més*, *sí*, *són* segons la norma vigent). En cas de dubte,
 deixa la forma de l'original: no "corregeixis" el que ja és correcte.
 
-### Majúscules en títols (§17)
+### Majúscules en títols (§20)
 El català no posa majúscula inicial a cada paraula: "Estratègies de negociació", no
 "Estratègies De Negociació".
 
@@ -120,7 +120,7 @@ En central s'escriu *en Joan*, *la Maria*. No l'afegeixis ni el treguis: segueix
 
 ## Copy i màrqueting (SEONOVE)
 
-`humanizer` §4 treu el llenguatge de venda. En copy publicitari això és massa: persuadir
+`humanizer` §16 treu el llenguatge de venda. En copy publicitari això és massa: persuadir
 **és** la feina del text. Regla per a aquest cas:
 
 - **Conserva** la persuasió real: benefici concret, prova, xifra, oferta, crida a l'acció clara.
@@ -155,7 +155,7 @@ Igual que `humanizer`:
 3. Pregunta't: què segueix sonant a IA? He afegit o tret cap dada, nom, xifra o cita?
    Qualsevol dada afegida o perduda és un error.
 4. Escriu la versió final. Revisa punt volat, apòstrofs, accents i pronoms febles.
-   Aplica la regla de guions (§14).
+   Aplica la regla de guions (§8).
 
 ## Font
 

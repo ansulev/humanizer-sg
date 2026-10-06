@@ -104,7 +104,7 @@ files you never touched (safe to take) and files you customized (merge by hand).
 
 ## Divergence
 
-Measured against upstream `9862685` `[re-measured 2026-09-11]`:
+Measured against upstream `225a6f3` `[re-measured 2026-10-06, unchanged since 9862685]`:
 
 ```
 SKILL.md               36 lines, 2 hunks   <- the only conflict surface
@@ -130,6 +130,16 @@ lists §7 → **§12**, and the no-invented-facts rule became step 2 of *How to 
 part a mechanical re-apply gets wrong and nothing warns you about: the text merges cleanly and
 then points at the wrong sections. **Re-check every `§n` in our hunks after any upstream
 renumbering.**
+
+**That check missed the language layers until 2026-10-06.** `humanizer-es` and `humanizer-ca`
+still cited the old 35-pattern numbers (§4 sales, §7 words, §8 copula, §14 dashes, §17 title
+case) for a month, and git could never flag it because upstream has no such files. Fixed to
+§16 / §12 / §18 / §8 / §20, §9 → §1. Filler (old §23) and false ranges (old §12) no longer
+exist upstream, so those two lines keep their own lexicon without a cross-reference. Check:
+`grep -n '§' humanizer-es/SKILL.md humanizer-ca/SKILL.md` against the `### n.` headings.
+
+`scripts/validate-package.py` (upstream's) **fails on this fork by design**: it allows exactly
+one `SKILL.md`, and the language layers are two more. Not a regression signal here.
 
 **Do not add fork documentation to `README.md`.** It is upstream's highest-churn file — their
 `e2e92e7` was a README rewrite and `2.11.0` rewrote all repo guidance. Anything
